@@ -102,7 +102,6 @@ void GameBoard::createTile(QPair<unsigned int, unsigned int> tileIndex)
 	auto r = tileIndex.first;
 	auto c = tileIndex.second;
 
-	// add a new tile to the row
 	m_tiles[r] += new Tile({r, c}, this);
 	static_cast<QGridLayout*>(this->layout())->addWidget(m_tiles[r][c], r, c);
 	connect(m_tiles[r][c], &Tile::firstClick, this, &GameBoard::placeMines);
@@ -150,27 +149,26 @@ void GameBoard::addNeighbor(QPair<unsigned int, unsigned int> tileIndex)
 	auto r = tileIndex.first;
 	auto c = tileIndex.second;
 
-	// add a new tile to the row
 	auto* tile    = m_tiles[r][c];
 	auto  lastRow = m_numRows - 1;
 	auto  lastCol = m_numCols - 1;
 
 	if (r && c)
-		tile->addNeighbor(m_tiles[r - 1][c - 1]); // top left
+		tile->addNeighbor(m_tiles[r - 1][c - 1]);
 	if (r)
-		tile->addNeighbor(m_tiles[r - 1][c]); // top
+		tile->addNeighbor(m_tiles[r - 1][c]);
 	if (r && c < lastCol)
-		tile->addNeighbor(m_tiles[r - 1][c + 1]); // top right
+		tile->addNeighbor(m_tiles[r - 1][c + 1]);
 	if (c < lastCol)
-		tile->addNeighbor(m_tiles[r][c + 1]); // right
+		tile->addNeighbor(m_tiles[r][c + 1]);
 	if (r < lastRow && c < lastCol)
-		tile->addNeighbor(m_tiles[r + 1][c + 1]); // bottom right
+		tile->addNeighbor(m_tiles[r + 1][c + 1]);
 	if (r < lastRow)
-		tile->addNeighbor(m_tiles[r + 1][c]); // bottom
+		tile->addNeighbor(m_tiles[r + 1][c]);
 	if (r < lastRow && c)
-		tile->addNeighbor(m_tiles[r + 1][c - 1]); // bottom left
+		tile->addNeighbor(m_tiles[r + 1][c - 1]);
 	if (c)
-		tile->addNeighbor(m_tiles[r][c - 1]); // left
+		tile->addNeighbor(m_tiles[r][c - 1]);
 }
 
 void GameBoard::addNeighbors()
@@ -180,8 +178,7 @@ void GameBoard::addNeighbors()
 
 void GameBoard::checkVictory()
 {
-	// when victory is accomplished, there may be more than 1 tile that are unrevealed, so make sure
-	// to only run this code once
+
 	if (!m_victory)
 	{
 		emit flagCountChanged(m_correctFlags.size() + m_incorrectFlags.size());
@@ -227,7 +224,6 @@ void GameBoard::defeatAnimation()
 
 void GameBoard::placeMines(Tile* firstClicked)
 {
-	// get a flat list of tiles
 	QList<Tile*> tiles;
 	QSet<Tile*>  doneUse;
 	doneUse += firstClicked;
@@ -238,13 +234,12 @@ void GameBoard::placeMines(Tile* firstClicked)
 		m_tiles += QList<Tile*>{};
 		for (unsigned int c = 0; c < m_numCols; ++c)
 		{
-			// add a new tile to the row (unless it's the first one clicked)
+
 			if (auto tile = m_tiles[r][c]; !doneUse.contains(tile))
 				tiles += tile;
 		}
 	}
 
-	// shuffle it
 	std::random_device rd;
 	std::mt19937       g(rd());
 

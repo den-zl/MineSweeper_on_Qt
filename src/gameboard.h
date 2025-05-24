@@ -44,8 +44,6 @@ private:
 	void addNeighbors();
 	void checkVictory();
 
-private:
-
 	unsigned int m_numRows;
 	unsigned int m_numCols;
 	unsigned int m_numMines;
