@@ -21,7 +21,6 @@ public:
 
 	Q_ENUM(Column);
 
-public:
 
 	HighScoreModel() = default;
 	explicit HighScoreModel(HighScore::Difficulty difficulty, QObject* parent = nullptr);

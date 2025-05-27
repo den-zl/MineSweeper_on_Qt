@@ -12,6 +12,7 @@ qt6_add_executable(${PROJECT_NAME}
         mainwindow.h
         mainwindow.cpp
         highScore.h
+        highScore.cpp
         highScoreModel.h
         ${RESOURCES}
 )

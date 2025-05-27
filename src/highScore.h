@@ -4,7 +4,6 @@
 #include <QDataStream>
 #include <QDateTime>
 
-
 class HighScoreModel;
 
 class HighScore : public QObject
@@ -22,7 +21,6 @@ public:
 	};
 	Q_ENUM(Difficulty);
 
-public:
 
 	HighScore() = default;
 	HighScore(QString name, Difficulty difficulty, quint32 score, QDateTime date);
