@@ -7,6 +7,8 @@ qt6_add_executable(${PROJECT_NAME}
         gameboard.cpp
         minetimer.h
         minetimer.cpp
+        mineCounter.h
+        minetimer.cpp
         ${RESOURCES}
 )
 

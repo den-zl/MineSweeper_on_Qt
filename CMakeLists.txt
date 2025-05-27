@@ -19,5 +19,4 @@ find_package(Qt6 6.9.1 REQUIRED COMPONENTS
 
 qt_standard_project_setup()
 
-
 add_subdirectory(src)
