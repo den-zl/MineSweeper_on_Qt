@@ -14,6 +14,7 @@ qt6_add_executable(${PROJECT_NAME}
         highScore.h
         highScore.cpp
         highScoreModel.h
+        highScoreModel.cpp
         ${RESOURCES}
 )
 
