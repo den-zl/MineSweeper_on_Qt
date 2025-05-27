@@ -11,6 +11,8 @@ qt6_add_executable(${PROJECT_NAME}
         minetimer.cpp
         mainwindow.h
         mainwindow.cpp
+        highScore.h
+        highScoreModel.h
         ${RESOURCES}
 )
 

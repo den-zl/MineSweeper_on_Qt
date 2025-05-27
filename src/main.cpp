@@ -1,9 +1,16 @@
-#include <iostream>
+#include <QApplication>
+#include <QStyleFactory>
 
-int main() {
+#include "mainwindow.h"
+#include "highScore.h"
+#include "highScoreModel.h"
 
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+int main(int argc, char* argv[])
+{
+    QApplication app(argc, argv);
 
-    return 0;
+    MainWindow w;
+    w.show();
+
+    return app.exec();
 }
