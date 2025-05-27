@@ -9,6 +9,8 @@ qt6_add_executable(${PROJECT_NAME}
         minetimer.cpp
         mineCounter.h
         minetimer.cpp
+        mainwindow.h
+        mainwindow.cpp
         ${RESOURCES}
 )
 
