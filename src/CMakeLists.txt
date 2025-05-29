@@ -16,6 +16,7 @@ qt6_add_executable(${PROJECT_NAME}
         highScoreModel.h
         highScoreModel.cpp
         statistics.h
+        tile.h
         ${RESOURCES}
 )
 
