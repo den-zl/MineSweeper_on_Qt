@@ -80,7 +80,6 @@ private:
 	void createStateMachine();
 	void setText();
 
-private:
 
 	bool m_isMine;
 	unsigned int m_adjacentMineCount;
