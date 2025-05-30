@@ -15,11 +15,13 @@ qt6_add_executable(${PROJECT_NAME}
         highScore.cpp
         highScoreModel.h
         highScoreModel.cpp
+        highScoreDialog.h
         statistics.h
         tile.h
         tile.cpp
         gameStats.h
         gameStats.cpp
+        gameStatsDialog.h
         ${RESOURCES}
 )
 
