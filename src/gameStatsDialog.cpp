@@ -4,30 +4,20 @@
 #include <utility>
 
 GameStatsDialog::GameStatsDialog(GameStats stats, QWidget* parent)
-	: QDialog{parent}
-	, m_stats{std::move(stats)}
-	, m_tabWidget{new QTabWidget(this)}
+    : QDialog{parent}
+, m_stats{std::move(stats)}
+, m_tabWidget{new QTabWidget(this)}
 {
-	m_tabWidget->addTab(new QFrame, "Beginner");
-	m_tabWidget->addTab(new QFrame, "Intermediate");
-	m_tabWidget->addTab(new QFrame, "Expert");
-
-	m_tabWidget->tabBar()->setUsesScrollButtons(false);
-
-	this->setLayout(new QVBoxLayout());
-	this->layout()->addWidget(m_tabWidget);
-	this->setWindowTitle("Statistics");
-	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	QVBoxLayout* mainLayout = new QVBoxLayout(this);
+	mainLayout->addWidget(m_tabWidget);
 
 	for (auto difficulty : {HighScore::beginner, HighScore::intermediate, HighScore::expert})
 	{
-		auto* tab = m_tabWidget->widget(difficulty);
-		tab->setLayout(new QGridLayout(this));
-
-		auto* tabLayout = dynamic_cast<QGridLayout*>(tab->layout());
+		QWidget* tab = new QWidget();
+		QGridLayout* tabLayout = new QGridLayout(tab);
 
 		int row = 0;
-		tabLayout->addWidget(new QLabel("Games Played:", this), ++row, 0);
+		tabLayout->addWidget(new QLabel("Games Played:", tab), ++row, 0);
 		tabLayout->addWidget(new QLabel(QString::number(m_stats.played(difficulty)), this), row, 1, Qt::AlignRight);
 		tabLayout->addWidget(new QFrame(this), ++row, 0);
 		tabLayout->addWidget(new QLabel("Wins:", this), ++row, 0);
@@ -56,8 +46,14 @@ GameStatsDialog::GameStatsDialog(GameStats stats, QWidget* parent)
 		tabLayout->addWidget(new QLabel("Avg. Time to Forfeit:", this), ++row, 0);
 		tabLayout->addWidget(new QLabel(QString::number(m_stats.averageTimeToForfeit(difficulty)), this), row, 1, Qt::AlignRight);
 		tabLayout->addWidget(new QLabel("seconds", this), row, 2);
-	}
 
+		m_tabWidget->addTab(tab, difficulty == HighScore::beginner ? "Beginner" :
+				   difficulty == HighScore::intermediate ? "Intermediate" : "Expert");
+	    }
+
+	m_tabWidget->tabBar()->setUsesScrollButtons(false);
+	this->setWindowTitle("Statistics");
+	this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	this->adjustSize();
 }
 
