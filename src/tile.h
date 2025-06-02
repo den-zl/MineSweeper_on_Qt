@@ -1,10 +1,11 @@
 #pragma once
+
 #include <QPushButton>
 #include <QList>
 #include <QStateMachine>
 #include <QState>
 #include <QFinalState>
-#include <QSignalMapper>
+
 
 struct TileLocation
 {

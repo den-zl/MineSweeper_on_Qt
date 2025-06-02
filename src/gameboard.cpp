@@ -3,9 +3,8 @@
 #include <random>
 #include <QGridLayout>
 #include <QSet>
-#include <QTimer>
-#include <QFuture>
 #include <QtConcurrent>
+
 
 GameBoard::GameBoard(unsigned int numRows, unsigned int numCols, unsigned int numMines, QWidget* parent /*= nullptr*/)
 	: m_numRows(numRows)
@@ -39,11 +38,15 @@ GameBoard::GameBoard(unsigned int numRows, unsigned int numCols, unsigned int nu
 		m_mines.remove(mine);
 
 		if (explosionTimer->property("victory").toBool())
+		{
 			mine->setIcon(Tile::tadaIcon());
+		}
 		else
 		{
 			if (!m_correctFlags.contains(mine))
+			{
 				mine->setIcon(Tile::explosionIcon());
+			}
 		}
 	});
 }
@@ -108,17 +111,25 @@ void GameBoard::createTile(QPair<unsigned int, unsigned int> tileIndex)
 	connect(m_tiles[r][c], &Tile::flagged, [this, tile = m_tiles[r][c]](bool isMine)
 	{
 		if (isMine)
+		{
 			m_correctFlags.insert(tile);
+		}
 		else
+		{
 			m_incorrectFlags.insert(tile);
+		}
 		checkVictory();
 	});
 	connect(m_tiles[r][c], &Tile::unFlagged, [this, tile = m_tiles[r][c]](bool isMine)
 	{
 		if (isMine)
+		{
 			m_correctFlags.remove(tile);
+		}
 		else
+		{
 			m_incorrectFlags.remove(tile);
+		}
 		checkVictory();
 	});
 	connect(m_tiles[r][c], &Tile::revealed, [this, tile = m_tiles[r][c]]()
@@ -154,21 +165,37 @@ void GameBoard::addNeighbor(QPair<unsigned int, unsigned int> tileIndex)
 	auto  lastCol = m_numCols - 1;
 
 	if (r && c)
+	{
 		tile->addNeighbor(m_tiles[r - 1][c - 1]);
+	}
 	if (r)
+	{
 		tile->addNeighbor(m_tiles[r - 1][c]);
+	}
 	if (r && c < lastCol)
+	{
 		tile->addNeighbor(m_tiles[r - 1][c + 1]);
+	}
 	if (c < lastCol)
+	{
 		tile->addNeighbor(m_tiles[r][c + 1]);
+	}
 	if (r < lastRow && c < lastCol)
+	{
 		tile->addNeighbor(m_tiles[r + 1][c + 1]);
+	}
 	if (r < lastRow)
+	{
 		tile->addNeighbor(m_tiles[r + 1][c]);
+	}
 	if (r < lastRow && c)
+	{
 		tile->addNeighbor(m_tiles[r + 1][c - 1]);
+	}
 	if (c)
+	{
 		tile->addNeighbor(m_tiles[r][c - 1]);
+	}
 }
 
 void GameBoard::addNeighbors()
@@ -211,7 +238,9 @@ void GameBoard::defeatAnimation()
 		{
 			disconnect(mine, &Tile::detonated, this, &GameBoard::defeatAnimation);
 			if (!mine->isFlagged())
+			{
 				mine->reveal();
+			}
 		}
 		emit defeat();
 	});
@@ -236,7 +265,9 @@ void GameBoard::placeMines(Tile* firstClicked)
 		{
 
 			if (auto tile = m_tiles[r][c]; !doneUse.contains(tile))
+			{
 				tiles += tile;
+			}
 		}
 	}
 

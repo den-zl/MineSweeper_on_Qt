@@ -30,6 +30,7 @@ qt6_add_executable(${PROJECT_NAME}
         gameStatsDialog.h
 )
 
+
 set(MACOSX_BUNDLE_ICON_FILE "Minesweeper.icns")
 set_target_properties(${PROJECT_NAME} PROPERTIES
         MACOSX_BUNDLE TRUE

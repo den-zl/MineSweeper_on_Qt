@@ -3,6 +3,7 @@
 #include <QTabBar>
 #include <utility>
 
+
 GameStatsDialog::GameStatsDialog(GameStats stats, QWidget* parent)
     : QDialog{parent}
 , m_stats{std::move(stats)}

@@ -1,7 +1,7 @@
 #include "highScore.h"
-
 #include <QDataStream>
 #include <QVariant>
+
 
 HighScore::HighScore(QString name, Difficulty difficulty, quint32 score, QDateTime date)
 	: QObject()

@@ -8,13 +8,11 @@
 #include "gameStats.h"
 
 #include <QAction>
-#include <QActionGroup>
 #include <QMenu>
 #include <QFrame>
 #include <QPushButton>
 #include <QMainWindow>
 #include <QStateMachine>
-#include <QState>
 
 
 class MainWindow : public QMainWindow

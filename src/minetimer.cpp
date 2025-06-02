@@ -2,6 +2,7 @@
 #include <QGuiApplication>
 #include <QStyleHints>
 
+
 MineTimer::MineTimer(QWidget* parent /*= nullptr*/)
 	: QLCDNumber(parent)
 	, m_seconds(0)
@@ -26,9 +27,13 @@ int MineTimer::time() const
 void  MineTimer::setTheme(Qt::ColorScheme colorScheme)
 {
 	if (colorScheme == Qt::ColorScheme::Dark)
+	{
 		this->setStyleSheet(".QLCDNumber { border: 2px inset #303030; background-color: black; color: red; }");
+	}
 	else
+	{
 		this->setStyleSheet(".QLCDNumber { border: 2px inset gray; background-color: black; color: red; }");
+	}
 }
 
 QSize MineTimer::sizeHint() const

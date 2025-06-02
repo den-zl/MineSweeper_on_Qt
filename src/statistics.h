@@ -7,7 +7,6 @@
 #include <initializer_list>
 #include <limits>
 #include <utility>
-
 #include <QDataStream>
 
 
@@ -123,12 +122,15 @@ public:
 	}
 
 
-	Statistics& operator+=(const T& measurement) noexcept
-	{
+	Statistics& operator+=(const T& measurement) noexcept {
 		if (measurement < m_min)
+		{
 			m_min = measurement;
+		}
 		else if (measurement > m_max)
-			m_max = measurement;
+		{
+		m_max = measurement;
+		}
 
 		m_sum += measurement;
 		m_sumOfSquares += measurement * measurement;
@@ -204,15 +206,15 @@ Statistics<T>& operator+(const Statistics<T>& lhs, const Statistics<T>& rhs) noe
 
 
 template <class T>
-bool operator==(const Statistics<T>& lhs, const Statistics<T>& rhs) noexcept
-{
+bool operator==(const Statistics<T>& lhs, const Statistics<T>& rhs) noexcept {
 	if (lhs.m_count != rhs.m_count ||
 		lhs.m_min != rhs.m_min ||
 		lhs.m_max != rhs.m_max ||
 		lhs.m_sum != rhs.m_sum)
+	{
 		return false;
-	else
-		return true;
+	}
+	return true;
 }
 
 template <class T>
@@ -222,11 +224,12 @@ bool operator!=(const Statistics<T>& lhs, const Statistics<T>& rhs) noexcept
 }
 
 template <class T>
-bool operator<(const Statistics<T>& lhs, const Statistics<T>& rhs) noexcept
-{
+bool operator<(const Statistics<T>& lhs, const Statistics<T>& rhs) noexcept {
 	if (lhs.m_count < rhs.m_count || lhs.m_min < rhs.m_min ||
-      lhs.m_max < rhs.m_max || lhs.m_sum < rhs.m_sum)
-    return true;
+	  lhs.m_max < rhs.m_max || lhs.m_sum < rhs.m_sum)
+	{
+	return true;
+	}
   return false;
 }
 

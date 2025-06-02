@@ -3,8 +3,8 @@
 #include <QList>
 #include <QFrame>
 #include <QSet>
-
 #include "tile.h"
+
 
 class GameBoard : public QFrame
 {

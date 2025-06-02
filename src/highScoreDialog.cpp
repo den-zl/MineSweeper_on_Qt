@@ -4,6 +4,7 @@
 #include <QTableView>
 #include <QHeaderView>
 
+
 HighScoreDialog::HighScoreDialog(const QMap<HighScore::Difficulty, HighScoreModel>& models, QWidget* parent)
 	: QDialog(parent)
 {

@@ -4,7 +4,6 @@
 #include <QAbstractItemModel>
 #include <QDataStream>
 #include <QVector>
-
 #include "highScore.h"
 
 

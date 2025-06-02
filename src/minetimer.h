@@ -2,6 +2,7 @@
 
 #include <QLCDNumber>
 
+
 class MineTimer : public QLCDNumber
 {
 public:

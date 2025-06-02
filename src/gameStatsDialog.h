@@ -2,12 +2,11 @@
 #define GAMESTATSDIALOG_H
 
 #include "gameStats.h"
-
 #include <QDialog>
 #include <QLabel>
 #include <QTabWidget>
 #include <QVBoxLayout>
-#include <QGroupBox>
+
 
 class GameStatsDialog : public QDialog
 {

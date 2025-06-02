@@ -31,25 +31,29 @@ QDataStream& operator<<(QDataStream& stream, const GameStats& stats)
 QDataStream& operator>>(QDataStream& stream, GameStats& stats)
 {
 	if (stream.status() != QDataStream::Ok)
+	{
 		return stream;
+	}
 
 	stats.stats.clear();
 	quint64 size;
 	stream >> size;
 
-	for (quint64 i = 0; i < size; ++i)
-	{
+	for (quint64 i = 0; i < size; ++i) {
 		HighScore::Difficulty	 difficulty;
 		GameStats::GameStatsData data;
 
 		stream >> difficulty;
 		if (stream.status() != QDataStream::Ok)
+		{
 			return stream;
+		}
 
 		stream >> data.wins >> data.losses >> data.forfeits >> data.gamesPlayed;
 		if (stream.status() != QDataStream::Ok)
+		{
 			return stream;
-
+		}
 		stats.stats[difficulty] = data;
 	}
 

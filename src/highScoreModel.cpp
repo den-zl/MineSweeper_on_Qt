@@ -1,6 +1,7 @@
 #include "highScoreModel.h"
 #include <cassert>
 
+
 constexpr int MAX_HIGH_SCORES = 10;
 
 HighScoreModel::HighScoreModel(HighScore::Difficulty difficulty, QObject* parent)
@@ -56,8 +57,7 @@ HighScoreModel& HighScoreModel::operator=(const HighScoreModel& other)
 	return *this;
 }
 
-void HighScoreModel::addHighScore(const HighScore& score)
-{
+void HighScoreModel::addHighScore(const HighScore& score) {
 	bool scoreInserted = false;
 
 	beginInsertRows(QModelIndex(), rowCount(), rowCount());
@@ -79,10 +79,14 @@ void HighScoreModel::addHighScore(const HighScore& score)
 	}
 
 	if (!scoreInserted)
+	{
 		m_highScores.insert(m_highScores.cend(), score);
+	}
 
 	while (m_highScores.size() > MAX_HIGH_SCORES)
+	{
 		m_highScores.removeLast();
+	}
 
 	endInsertRows();
 }
@@ -200,14 +204,17 @@ const QVector<HighScore>& HighScoreModel::highScores() const
 	return m_highScores;
 }
 
-void HighScoreModel::setHighScores(const QVector<HighScore>& scores)
-{
+void HighScoreModel::setHighScores(const QVector<HighScore>& scores) {
 	if(scores.empty())
+	{
 		return;
+	}
 
 	beginInsertRows(QModelIndex(), 0, static_cast<int>(scores.size()) - 1);
 	for (const auto& score : scores)
+	{
 		addHighScore(score);
+	}
 	endInsertRows();
 }
 

@@ -11,6 +11,7 @@
 #include <QGuiApplication>
 #include <QStyleHints>
 
+
 bool Tile::m_firstClick = false;
 
 const QString Tile::unrevealedStyleSheetLight =
@@ -196,8 +197,7 @@ QList<Tile*>& Tile::neighbors()
 	return m_neighbors;
 }
 
-void Tile::mousePressEvent(QMouseEvent* e)
-{
+void Tile::mousePressEvent(QMouseEvent* e) {
 	if (!m_firstClick)
 	{
 		m_firstClick = true;
@@ -212,27 +212,37 @@ void Tile::mousePressEvent(QMouseEvent* e)
 		m_buttons = Qt::LeftButton | Qt::RightButton;
 	}
 	else if (e->buttons() == Qt::LeftButton)
-		m_buttons = Qt::LeftButton;
+	{
+	m_buttons = Qt::LeftButton;
+	}
 	else if (e->buttons() == Qt::RightButton)
+	{
 		m_buttons = Qt::RightButton;
+	}
 }
 
-void Tile::mouseReleaseEvent(QMouseEvent* e)
-{
+void Tile::mouseReleaseEvent(QMouseEvent* e) {
 	if (m_buttons == (Qt::LeftButton | Qt::RightButton))
+	{
 		emit unClicked();
+	}
 	else if (m_buttons == Qt::LeftButton)
+	{
 		emit leftClicked();
+	}
 	else if (m_buttons == Qt::RightButton)
-		emit rightClicked();
+	{
+	emit rightClicked();
+	}
 }
 
 void Tile::mouseMoveEvent(QMouseEvent* e)
 {
-	if (e->buttons() == (Qt::LeftButton | Qt::RightButton))
-	{
+	if (e->buttons() == (Qt::LeftButton | Qt::RightButton)) {
 		if (!this->rect().contains(this->mapFromGlobal(QCursor::pos())))
-			emit unPreview();
+		{
+		emit unPreview();
+		}
 	}
 }
 
@@ -287,12 +297,15 @@ void Tile::createStateMachine()
 			neighbor->preview();
 	});
 
-	connect(revealNeighborsState, &QState::entered, [this]()
-	{
+	connect(revealNeighborsState, &QState::entered, [this]() {
 		if (m_adjacentFlaggedCount == m_adjacentMineCount && m_adjacentMineCount)
+		{
 			revealNeighbors();
+		}
 		else
+		{
 			unPreviewNeighbors();
+		}
 		emit reveal();
 	});
 
@@ -305,7 +318,9 @@ void Tile::createStateMachine()
 		{
 			setText();
 			if (!hasAdjacentMines())
+			{
 				revealNeighbors();
+			}
 			emit revealed();
 		}
 		else
@@ -321,14 +336,18 @@ void Tile::createStateMachine()
 	{
 		this->setIcon(flagIcon());
 		for (auto neighbor : m_neighbors)
+		{
 			neighbor->incrementAdjacentFlaggedCount();
+		}
 		emit flagged(m_isMine);
 	});
 
 	connect(flaggedState, &QState::exited, [this]()
 	{
 		for (auto neighbor : m_neighbors)
+		{
 			neighbor->decrementAdjacentFlaggedCount();
+		}
 		emit unFlagged(m_isMine);
 	});
 
@@ -418,7 +437,9 @@ void Tile::setText()
 
 	QPushButton::setStyleSheet(revealedWithNumberStylesheet.arg(color));
 	if (m_adjacentMineCount)
+	{
 		QPushButton::setText(QString::number(m_adjacentMineCount));
+	}
 }
 
 void Tile::setTheme(Qt::ColorScheme colorScheme)

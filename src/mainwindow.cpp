@@ -5,23 +5,22 @@
 #include "highScoreModel.h"
 #include "mineCounter.h"
 #include "minetimer.h"
+#include "gameStatsDialog.h"
 
-#include <QDebug>
 #include <QFrame>
 #include <QGuiApplication>
 #include <QInputDialog>
 #include <QMenuBar>
-#include <QMessageBox>
 #include <QSettings>
 #include <QSignalTransition>
 #include <QStatusBar>
 #include <QStyleHints>
 #include <QTimer>
-#include <QVBoxLayout>
 #include <qfile.h>
 #include <qstyle.h>
+#include <QActionGroup>
+#include <QAction>
 
-#include "gameStatsDialog.h"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -174,7 +173,9 @@ void MainWindow::setupStateMachine()
 void MainWindow::onVictory()
 {
 	if (!m_highScores.contains(difficulty))
+	{
 		m_highScores.insert(difficulty, HighScoreModel(difficulty));
+	}
 
 	if (m_highScores[difficulty].isHighScore(mineTimer->time()))
 	{
@@ -282,8 +283,10 @@ void MainWindow::saveSettings()
 	settings.setValue("difficulty", QVariant::fromValue(difficulty).toString());
 
 	settings.beginWriteArray("High Scores", static_cast<int>(m_highScores.size()));
+
 	int i = 0;
-	for (const auto& model : m_highScores) {
+	for (const auto& model : m_highScores)
+	{
 		QByteArray data;
 		QDataStream stream(&data, QIODevice::WriteOnly);
 		stream << model;
@@ -310,7 +313,8 @@ void MainWindow::loadSettings()
 	m_highScores.insert(HighScore::expert, HighScoreModel{HighScore::expert});
 
 	const int size = settings.beginReadArray("High Scores");
-	for (int i = 0; i < size; ++i) {
+	for (int i = 0; i < size; ++i)
+	{
 		settings.setArrayIndex(i);
 
 		HighScoreModel model;

@@ -2,8 +2,8 @@
 
 #include <QDialog>
 #include <QTabWidget>
-
 #include "highScoreModel.h" 
+
 
 class HighScoreDialog : public QDialog
 {

@@ -4,6 +4,7 @@
 #include <QDataStream>
 #include <QDateTime>
 
+
 class HighScoreModel;
 
 class HighScore : public QObject

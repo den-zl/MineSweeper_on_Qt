@@ -4,8 +4,8 @@
 
 #include <highScore.h>
 #include <statistics.h>
-
 #include <QObject>
+
 
 class GameStats
 {

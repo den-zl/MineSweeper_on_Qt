@@ -2,6 +2,7 @@
 #include <QGuiApplication>
 #include <QStyleHints>
 
+
 MineCounter::MineCounter(QWidget* parent)
 	: QLCDNumber(parent)
 {

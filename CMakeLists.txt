@@ -10,7 +10,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 file(MAKE_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 set(CMAKE_PREFIX_PATH "/Users/denzl/Qt/6.9.1/macos")
-
 find_package(Qt6 6.9.1 REQUIRED COMPONENTS
         Core Gui Widgets StateMachine Concurrent Network
 )

@@ -1,5 +1,7 @@
 #pragma once
+
 #include <QLCDNumber>
+
 
 class MineCounter : public QLCDNumber
 {
