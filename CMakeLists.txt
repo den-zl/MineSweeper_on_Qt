@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.31)
-project(MineSweeper_on_Qt)
-
-set(CMAKE_CXX_STANDARD 20)
+project(MineSweeper_on_Qt LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 20)

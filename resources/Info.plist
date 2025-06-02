@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIconFile</key>
+    <string>Minesweeper.icns</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.yourcompany.minesweeper</string>
+    <key>CFBundleName</key>
+    <string>Minesweeper</string>
+    <key>CFBundleDisplayName</key>
+    <string>Minesweeper</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>LSUIElement</key>
+    <string>false</string>
+</dict>
+</plist>
